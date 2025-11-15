@@ -19,6 +19,9 @@ end
 nmap('[p', '<Cmd>exe "put! " . v:register<CR>', 'Paste Above')
 nmap(']p', '<Cmd>exe "put "  . v:register<CR>', 'Paste Below')
 
+nmap('<tab>', '<Cmd>bnext<CR>', 'Next buffer')
+nmap('<s-tab>', '<Cmd>bprev<CR>', 'Previous buffer')
+
 -- Many general mappings are created by 'mini.basics'. See 'plugin/30_mini.lua'
 
 -- stylua: ignore start
@@ -195,6 +198,9 @@ nmap_leader('lr', '<Cmd>lua vim.lsp.buf.rename()<CR>',          'Rename')
 nmap_leader('lR', '<Cmd>lua vim.lsp.buf.references()<CR>',      'References')
 nmap_leader('ls', '<Cmd>lua vim.lsp.buf.definition()<CR>',      'Source definition')
 nmap_leader('lt', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', 'Type definition')
+
+nmap('gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', 'Source definition')
+nmap('gR', '<Cmd>lua vim.lsp.buf.references()<CR>', 'References')
 
 xmap_leader('lf', formatting_cmd, 'Format selection')
 

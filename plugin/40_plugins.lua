@@ -93,9 +93,18 @@ now_if_args(function()
   -- the rules provided by 'nvim-lspconfig'.
   -- Use `:h vim.lsp.config()` or 'after/lsp/' directory to configure servers.
   -- Uncomment and tweak the following `vim.lsp.enable()` call to enable servers.
-  -- vim.lsp.enable({
-  --   -- For example, if `lua-language-server` is installed, use `'lua_ls'` entry
-  -- })
+  vim.lsp.enable({
+    'lua_ls',
+    'ty',
+    'ruff'
+  })
+end)
+
+-- Oil ========================================================================
+later(function()
+  add('stevearc/oil.nvim')
+  require("oil").setup()
+  vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 end)
 
 -- Formatting =================================================================
