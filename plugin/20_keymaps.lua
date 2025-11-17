@@ -21,6 +21,7 @@ nmap(']p', '<Cmd>exe "put "  . v:register<CR>', 'Paste Below')
 
 nmap('<tab>', '<Cmd>bnext<CR>', 'Next buffer')
 nmap('<s-tab>', '<Cmd>bprev<CR>', 'Previous buffer')
+nmap('<esc>', '<Cmd>noh<CR>', 'Clear search highlight')
 
 -- Many general mappings are created by 'mini.basics'. See 'plugin/30_mini.lua'
 

@@ -95,8 +95,25 @@ now_if_args(function()
   -- Uncomment and tweak the following `vim.lsp.enable()` call to enable servers.
   vim.lsp.enable({
     'lua_ls',
+    'stylua',
     'ty',
     'ruff'
+  })
+end)
+
+-- Tmux navigation ============================================================
+later(function()
+  add('alexghergh/nvim-tmux-navigation')
+  require("nvim-tmux-navigation").setup({
+    disable_when_zoomed = true, -- defaults to false
+    keybindings = {
+      left = "<C-h>",
+      down = "<C-j>",
+      up = "<C-k>",
+      right = "<C-l>",
+      last_active = "<C-\\>",
+      next = "<C-Space>",
+    },
   })
 end)
 
@@ -150,10 +167,10 @@ later(function() add('rafamadriz/friendly-snippets') end)
 -- If you need them to work elsewhere, consider using other package managers.
 --
 -- You can use it like so:
--- later(function()
---   add('mason-org/mason.nvim')
---   require('mason').setup()
--- end)
+later(function()
+  add('mason-org/mason.nvim')
+  require('mason').setup()
+end)
 
 -- Beautiful, usable, well maintained color schemes outside of 'mini.nvim' and
 -- have full support of its highlight groups. Use if you don't like 'miniwinter'

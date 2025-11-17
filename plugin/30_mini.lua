@@ -60,7 +60,7 @@ now(function()
     options = { basic = false },
     mappings = {
       -- Create `<C-hjkl>` mappings for window navigation
-      windows = true,
+      windows = false,
       -- Create `<M-hjkl>` mappings for navigation in Insert and Command modes
       move_with_alt = true,
     },
@@ -531,7 +531,7 @@ end)
 --
 -- See also:
 -- - `:h MiniIndentscope.gen_animation` - available animation rules
-later(function() require('mini.indentscope').setup() end)
+later(function() require('mini.indentscope').setup({draw = {animation = require('mini.indentscope').gen_animation.none()}}) end)
 
 -- Jump to next/previous single character. It implements "smarter `fFtT` keys"
 -- (see `:h f`) that work across multiple lines, start "jumping mode", and
