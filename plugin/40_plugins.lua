@@ -30,24 +30,28 @@ local now_if_args = _G.Config.now_if_args
 -- Add these plugins now if file (and not 'mini.starter') is shown after startup.
 now_if_args(function()
   add({
-    source = 'nvim-treesitter/nvim-treesitter',
+    source = "nvim-treesitter/nvim-treesitter",
     -- Use `main` branch since `master` branch is frozen, yet still default
-    checkout = 'main',
+    checkout = "main",
     -- Update tree-sitter parser after plugin is updated
-    hooks = { post_checkout = function() vim.cmd('TSUpdate') end },
+    hooks = {
+      post_checkout = function()
+        vim.cmd("TSUpdate")
+      end,
+    },
   })
   add({
-    source = 'nvim-treesitter/nvim-treesitter-textobjects',
+    source = "nvim-treesitter/nvim-treesitter-textobjects",
     -- Same logic as for 'nvim-treesitter'
-    checkout = 'main',
+    checkout = "main",
   })
 
   -- Define languages which will have parsers installed and auto enabled
   local languages = {
     -- These are already pre-installed with Neovim. Used as an example.
-    'lua',
-    'vimdoc',
-    'markdown',
+    "lua",
+    "vimdoc",
+    "markdown",
     -- Add here more languages with which you want to use tree-sitter
     -- To see available languages:
     -- - Execute `:=require('nvim-treesitter').get_available()`
@@ -55,10 +59,12 @@ now_if_args(function()
     --   https://github.com/nvim-treesitter/nvim-treesitter/blob/main
   }
   local isnt_installed = function(lang)
-    return #vim.api.nvim_get_runtime_file('parser/' .. lang .. '.*', false) == 0
+    return #vim.api.nvim_get_runtime_file("parser/" .. lang .. ".*", false) == 0
   end
   local to_install = vim.tbl_filter(isnt_installed, languages)
-  if #to_install > 0 then require('nvim-treesitter').install(to_install) end
+  if #to_install > 0 then
+    require("nvim-treesitter").install(to_install)
+  end
 
   -- Enable tree-sitter after opening a file for a target language
   local filetypes = {}
@@ -67,8 +73,10 @@ now_if_args(function()
       table.insert(filetypes, ft)
     end
   end
-  local ts_start = function(ev) vim.treesitter.start(ev.buf) end
-  _G.Config.new_autocmd('FileType', filetypes, ts_start, 'Start tree-sitter')
+  local ts_start = function(ev)
+    vim.treesitter.start(ev.buf)
+  end
+  _G.Config.new_autocmd("FileType", filetypes, ts_start, "Start tree-sitter")
 end)
 
 -- Language servers ===========================================================
@@ -87,23 +95,23 @@ end)
 --
 -- Add it now if file (and not 'mini.starter') is shown after startup.
 now_if_args(function()
-  add('neovim/nvim-lspconfig')
+  add("neovim/nvim-lspconfig")
 
   -- Use `:h vim.lsp.enable()` to automatically enable language server based on
   -- the rules provided by 'nvim-lspconfig'.
   -- Use `:h vim.lsp.config()` or 'after/lsp/' directory to configure servers.
   -- Uncomment and tweak the following `vim.lsp.enable()` call to enable servers.
   vim.lsp.enable({
-    'lua_ls',
-    'stylua',
-    'ty',
-    'ruff'
+    "lua_ls",
+    "stylua",
+    "ty",
+    "ruff",
   })
 end)
 
 -- Tmux navigation ============================================================
 later(function()
-  add('alexghergh/nvim-tmux-navigation')
+  add("alexghergh/nvim-tmux-navigation")
   require("nvim-tmux-navigation").setup({
     disable_when_zoomed = true, -- defaults to false
     keybindings = {
@@ -119,7 +127,7 @@ end)
 
 -- Oil ========================================================================
 later(function()
-  add('stevearc/oil.nvim')
+  add("stevearc/oil.nvim")
   require("oil").setup()
   vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 end)
@@ -133,13 +141,13 @@ end)
 -- The 'stevearc/conform.nvim' plugin is a good and maintained solution for easier
 -- formatting setup.
 later(function()
-  add('stevearc/conform.nvim')
+  add("stevearc/conform.nvim")
 
   -- See also:
   -- - `:h Conform`
   -- - `:h conform-options`
   -- - `:h conform-formatters`
-  require('conform').setup({
+  require("conform").setup({
     -- Map of filetype to formatters
     -- Make sure that necessary CLI tool is available
     -- formatters_by_ft = { lua = { 'stylua' } },
@@ -155,7 +163,9 @@ end)
 -- snippet files. They are organized in 'snippets/' directory (mostly) per language.
 -- 'mini.snippets' is designed to work with it as seamlessly as possible.
 -- See `:h MiniSnippets.gen_loader.from_lang()`.
-later(function() add('rafamadriz/friendly-snippets') end)
+later(function()
+  add("rafamadriz/friendly-snippets")
+end)
 
 -- Honorable mentions =========================================================
 
@@ -168,8 +178,8 @@ later(function() add('rafamadriz/friendly-snippets') end)
 --
 -- You can use it like so:
 later(function()
-  add('mason-org/mason.nvim')
-  require('mason').setup()
+  add("mason-org/mason.nvim")
+  require("mason").setup()
 end)
 
 -- Beautiful, usable, well maintained color schemes outside of 'mini.nvim' and
@@ -179,8 +189,8 @@ MiniDeps.now(function()
   -- Install only those that you need
   -- add('sainnhe/everforest')
   -- add('Shatur/neovim-ayu')
-  add('ellisonleao/gruvbox.nvim')
+  add("ellisonleao/gruvbox.nvim")
 
   -- Enable only one
-  vim.cmd('color gruvbox')
+  vim.cmd("color gruvbox")
 end)

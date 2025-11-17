@@ -14,7 +14,7 @@ return {
   on_attach = function(client, buf_id)
     -- Reduce very long list of triggers for better 'mini.completion' experience
     client.server_capabilities.completionProvider.triggerCharacters =
-      { '.', ':', '#', '(' }
+      { ".", ":", "#", "(" }
 
     -- Use this function to define buffer-local mappings and behavior that depend
     -- on attached client or only makes sense if there is language server attached.
@@ -23,7 +23,7 @@ return {
   settings = {
     Lua = {
       -- Define runtime properties. Use 'LuaJIT', as it is built into Neovim.
-      runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
+      runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
       workspace = {
         -- Don't analyze code from submodules
         ignoreSubmodules = true,
@@ -31,8 +31,8 @@ return {
         -- Tells lua_ls where to find all the Lua files that you have loaded
         -- for your neovim configuration.
         library = {
-          '${3rd}/luv/library',
-          unpack(vim.api.nvim_get_runtime_file('', true)),
+          "${3rd}/luv/library",
+          unpack(vim.api.nvim_get_runtime_file("", true)),
         },
         -- If lua_ls is really slow on your computer, you can try this instead:
         -- library = { vim.env.VIMRUNTIME },
