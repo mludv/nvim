@@ -19,8 +19,11 @@ end
 nmap('[p', '<Cmd>exe "put! " . v:register<CR>', 'Paste Above')
 nmap(']p', '<Cmd>exe "put "  . v:register<CR>', 'Paste Below')
 
+nmap("-", "<CMD>Oil<CR>", "Open parent directory")
 nmap('<tab>', '<Cmd>bnext<CR>', 'Next buffer')
 nmap('<s-tab>', '<Cmd>bprev<CR>', 'Previous buffer')
+nmap('H', '<Cmd>bprev<CR>', 'Previous buffer')
+nmap('L', '<Cmd>bnext<CR>', 'Next buffer')
 nmap('<esc>', '<Cmd>noh<CR>', 'Clear search highlight')
 
 -- Many general mappings are created by 'mini.basics'. See 'plugin/30_mini.lua'
@@ -201,7 +204,6 @@ nmap_leader('ls', '<Cmd>lua vim.lsp.buf.definition()<CR>',      'Source definiti
 nmap_leader('lt', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', 'Type definition')
 
 nmap('gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', 'Source definition')
-nmap('gR', '<Cmd>lua vim.lsp.buf.references()<CR>', 'References')
 
 xmap_leader('lf', formatting_cmd, 'Format selection')
 
